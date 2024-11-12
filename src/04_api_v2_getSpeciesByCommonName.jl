@@ -36,6 +36,7 @@ end
 * `result.abstract`: Refined data frame.\n
 # Example\n
 ```
+using SP2000China;
 your_common_name = "土人参";
 your_api_key = "Please register an account and obtain an API key";
 your_page = 1;
