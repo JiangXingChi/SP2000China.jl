@@ -3,7 +3,7 @@
 * [User's guide: SP2000China.jl](https://jiangxingchi.github.io/SP2000China.jl/)
 * To install this package:
 ```
-using Pkg
+using Pkg;
 Pkg.add("SP2000China")
 ```
 or
