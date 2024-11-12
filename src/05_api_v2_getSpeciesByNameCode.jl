@@ -26,6 +26,7 @@ end
 * `result.abstract`: Refined data frame.\n
 # Example\n
 ```
+using SP2000China;
 your_name_code = "1ac19d0d82d84dd2900d51a742fa9296";
 your_api_key = "Please register an account and obtain an API key";
 result = GetSpeciesByNameCode(name_code=your_name_code,api_key=your_api_key);
