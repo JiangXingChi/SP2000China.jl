@@ -1,3 +1,6 @@
+using Pkg
+Pkg.develop(PackageSpec(url="https://github.com/JiangXingChi/SP2000China.jl"))
+
 using Documenter
 using SP2000China
 
