@@ -9,5 +9,6 @@ makedocs(
         "Function" => "function.md",
         "Acknowledgement" => "acknowledgement.md"
     ],
-    remotes = nothing  # 禁用自动检测远程信息
+    # 禁用自动检测远程信息
+    remotes = nothing  
 )
