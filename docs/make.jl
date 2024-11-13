@@ -8,6 +8,9 @@ makedocs(
         "User's guide" => "index.md",
         "Function" => "function.md",
         "Acknowledgement" => "acknowledgement.md"
-    ],
+    ]
+)
+
+deploydocs(
     repo = "https://github.com/JiangXingChi/SP2000China.jl"
 )
