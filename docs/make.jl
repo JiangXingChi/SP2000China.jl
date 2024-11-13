@@ -9,5 +9,5 @@ makedocs(
         "Function" => "function.md",
         "Acknowledgement" => "acknowledgement.md"
     ],
-    remotes = nothing  # 禁用自动检测远程信息
+    repo = "https://github.com/JiangXingChi/SP2000China.jl"
 )
