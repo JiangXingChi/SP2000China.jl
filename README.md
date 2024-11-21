@@ -6,8 +6,3 @@
 using Pkg;
 Pkg.add("SP2000China")
 ```
-or
-```
-using Pkg;
-Pkg.add(PackageSpec(url="https://gitee.com/pandalinux/SP2000China.jl"))
-```
