@@ -8,8 +8,8 @@ makedocs(
         "Function" => "function.md",
         "Acknowledgement" => "acknowledgement.md"
     ],
-    remotes = nothing,
-    root = "C:/Users/pandalinux/Desktop/SP2000China/docs"
+    # remotes = nothing,
+    # root = "C:/Users/pandalinux/Desktop/SP2000China/docs"
 )
 
 deploydocs(
