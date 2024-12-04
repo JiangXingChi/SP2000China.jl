@@ -1,7 +1,4 @@
-using HTTP
-using JSON
-using URIParser
-using DataFrames
+using HTTP,JSON,URIParser,DataFrames
 
 """
 Construct a structure to store the results of the function `GetSpeciesByFamilyId`.
@@ -44,7 +41,7 @@ result = GetSpeciesByFamilyId(family_id=your_family_id,api_key=your_api_key,page
 result.data
 result.count
 result.page
-reult.limit
+result.limit
 result.abstract
 ```
 """

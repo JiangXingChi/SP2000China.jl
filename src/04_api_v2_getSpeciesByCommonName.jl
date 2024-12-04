@@ -1,7 +1,4 @@
-using HTTP
-using JSON
-using URIParser
-using DataFrames
+using HTTP,JSON,URIParser,DataFrames
 
 """
 Construct a structure to store the results of the function `GetSpeciesByCommonName`.
@@ -32,7 +29,7 @@ end
 * `result.data`: Dictionary converted from JSON information.\n
 * `result.count`: Total number of matches.\n
 * `result.page`: Current data page.\n
-* `reult.limit`: Number of items displayed per page.\n
+* `result.limit`: Number of items displayed per page.\n
 * `result.abstract`: Refined data frame.\n
 # Example\n
 ```
@@ -44,7 +41,7 @@ result = GetSpeciesByCommonName(common_name=your_common_name,api_key=your_api_ke
 result.data
 result.count
 result.page
-reult.limit
+result.limit
 result.abstract
 ```
 """
@@ -69,6 +66,7 @@ function GetSpeciesByCommonName(;common_name::String,api_key::String,page::Int=1
         dict_species = data["data"]["species"]
         # Prepare a data frame to organize dict_species
         df_result = DataFrames.DataFrame(scientific_name = String[],
+                                        latin_name = String[],
                                         chinese_name = String[],
                                         common_names = String[],
                                         kingdom = String[],
@@ -85,6 +83,10 @@ function GetSpeciesByCommonName(;common_name::String,api_key::String,page::Int=1
             accepted_name_info = species_i["accepted_name_info"]
             # Get the scientific name
             scientific_name = accepted_name_info["scientificName"]
+            # Get the author
+            author_name = accepted_name_info["author"]
+            # Get the latin name
+            latin_name = join([scientific_name,author_name]," ")
             # Get the Chinese name
             chinese_name = accepted_name_info["chineseName"]
             # Get the common names
@@ -93,6 +95,7 @@ function GetSpeciesByCommonName(;common_name::String,api_key::String,page::Int=1
             taxon_tree = accepted_name_info["taxonTree"]
             # Push the information to the data frame
             push!(df_result,(scientific_name,
+                            latin_name,
                             chinese_name,
                             common_names,
                             taxon_tree["kingdom"],

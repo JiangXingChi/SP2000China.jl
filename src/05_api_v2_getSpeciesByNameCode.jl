@@ -1,7 +1,4 @@
-using HTTP
-using JSON
-using URIParser
-using DataFrames
+using HTTP,JSON,URIParser,DataFrames
 
 """
 Construct a structure to store the results of the function `GetSpeciesByNameCode`.
@@ -47,20 +44,25 @@ function GetSpeciesByNameCode(;name_code::String,api_key::String)
         data = JSON.parse(String(response.body))
         # Extract the scientific name
         scientific_name = data["data"]["scientificName"]
+        # Get the author
+        author_name = data["data"]["author"]
+        # Get the latin name
+        latin_name = join([scientific_name,author_name]," ")
         # Extract the Chinese name
         chinese_name = data["data"]["chineseName"]
         # Extract the taxon tree
         taxon_tree = data["data"]["taxonTree"]
         # Create a data frame to store the results
         df_result = DataFrame(scientific_name = [scientific_name],
-                    chinese_name = [chinese_name],
-                    kingdom = [taxon_tree["kingdom"]],
-                    phylum = [taxon_tree["phylum"]],
-                    class = [taxon_tree["class"]],
-                    order = [taxon_tree["order"]],
-                    family = [taxon_tree["family"]],
-                    genus = [taxon_tree["genus"]],
-                    species = [taxon_tree["species"]])
+                            latin_name = [latin_name],
+                            chinese_name = [chinese_name],
+                            kingdom = [taxon_tree["kingdom"]],
+                            phylum = [taxon_tree["phylum"]],
+                            class = [taxon_tree["class"]],
+                            order = [taxon_tree["order"]],
+                            family = [taxon_tree["family"]],
+                            genus = [taxon_tree["genus"]],
+                            species = [taxon_tree["species"]])
         # Construct the result
         result = GetSpeciesByNameCodeStruct(data,df_result)
         # Return the result

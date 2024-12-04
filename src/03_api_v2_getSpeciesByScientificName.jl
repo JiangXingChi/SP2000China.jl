@@ -1,7 +1,4 @@
-using HTTP
-using JSON
-using URIParser
-using DataFrames
+using HTTP,JSON,URIParser,DataFrames
 
 """
 Construct a structure to store the results of the function `GetSpeciesByScientificName`.
@@ -32,7 +29,7 @@ end
 * `result.data`: Dictionary converted from JSON information.\n
 * `result.count`: Total number of matches.\n
 * `result.page`: Current data page.\n
-* `reult.limit`: Number of items displayed per page.\n
+* `result.limit`: Number of items displayed per page.\n
 * `result.abstract`: Refined data frame.\n
 # Example\n
 ```
@@ -44,7 +41,7 @@ result = GetSpeciesByScientificName(scientific_name=your_scientific_name,api_key
 result.data
 result.count
 result.page
-reult.limit
+result.limit
 result.abstract
 ```
 """
@@ -69,6 +66,7 @@ function GetSpeciesByScientificName(;scientific_name::String,api_key::String,pag
         dict_species=data["data"]["species"]
         # Define an empty DataFrame with required columns
         df_result = DataFrames.DataFrame(scientific_name = String[],
+                                        latin_name = String[],
                                         chinese_name = String[],
                                         kingdom = String[],
                                         phylum = String[],
@@ -82,6 +80,10 @@ function GetSpeciesByScientificName(;scientific_name::String,api_key::String,pag
         for species_i in dict_species
             # Get the scientific name
             scientific_name = species_i["accepted_name_info"]["scientificName"]
+            # Get the author
+            author_name = species_i["accepted_name_info"]["author"]
+            # Get the latin name
+            latin_name = join([scientific_name,author_name]," ")
             # Get the Chinese name
             chinese_name = species_i["accepted_name_info"]["chineseName"]
             # Get the classification information
@@ -97,6 +99,7 @@ function GetSpeciesByScientificName(;scientific_name::String,api_key::String,pag
             name_code = species_i["name_code"]
             # Add the data to df_result
             push!(df_result, (scientific_name,
+                            latin_name,
                             chinese_name,
                             kingdom,
                             phylum,

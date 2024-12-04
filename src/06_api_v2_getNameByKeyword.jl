@@ -1,7 +1,4 @@
-using HTTP
-using JSON
-using URIParser
-using DataFrames
+using HTTP,JSON,URIParser,DataFrames
 
 """
 Construct a structure to store the results of the function `GetNameByKeyword`.
@@ -32,7 +29,7 @@ end
 * `result.data`: Dictionary converted from JSON information.\n
 * `result.count`: Total number of matches.\n
 * `result.page`: Current data page.\n
-* `reult.limit`: Number of items displayed per page.\n
+* `result.limit`: Number of items displayed per page.\n
 * `result.abstract`: Refined data frame.\n
 # Example\n
 ```
@@ -44,7 +41,7 @@ result = GetNameByKeyword(keyword=your_keyword,api_key=your_api_key,page=your_pa
 result.data
 result.count
 result.page
-reult.limit
+result.limit
 result.abstract
 ```
 """
