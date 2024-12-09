@@ -6,3 +6,4 @@
 using Pkg;
 Pkg.add("SP2000China")
 ```
+* The core work of the project revolves around the Species 2000 China Node: http://www.sp2000.org.cn/
